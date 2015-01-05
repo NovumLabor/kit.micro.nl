@@ -1,0 +1,92 @@
+---
+layout: post
+title:  "10 Relays"
+date:   2014-06-20 20:16:18
+categories: tutorial
+hype: 11-relay
+codebender: 36530
+parts:
+    - sku:	    COM-08377
+      points:	  G12 → D12
+
+    - sku:      COM-08377
+      points:   C20 → W22
+      
+    - sku:      COM-08588
+      points:   F13 → D13
+
+    - sku:      COM-12852
+      points:   B11, B12, B13
+
+    - sku:      COM-00100
+      points:   F15, E15, F19, E20, and F21
+
+    - sku:      COM-09594
+      points:   C23 → C24
+
+    - sku:      COM-09590
+      points:   C26 → C27
+
+    - sku:      BLUE-JUMPER
+      points:   J13 → J15
+
+    - sku:      PURPLE-JUMPER
+      points:   J19 → E26
+
+    - sku:      BLACK-JUMPER
+      points:   A11 → X12
+
+    - sku:      RED-JUMPER
+      points:   Y31 → W31
+
+    - sku:      RED-JUMPER
+      points:   I5 → Y7
+
+    - sku:      RED-JUMPER
+      points:   I15 → Y17
+
+    - sku:      YELLOW-JUMPER
+      points:   J9 → J12
+
+    - sku:      YELLOW-JUMPER
+      points:   C13 → C15
+
+    - sku:      YELLOW-JUMPER
+      points:   I21 → E23
+
+    - sku:      YELLOW-JUMPER
+      points:   A24 → X28
+
+    - sku:      YELLOW-JUMPER
+      points:   A27 → X29
+
+intro: |
+  Een relais is qua basis een electrisch aangestuurde mechanische schakelaar. Binnenin het vriendelijk uitziende plastic doosje zit een electromagneet die, wanneer het onder spanning wordt gezet, de schakelaar laat bewegen. In deze oefening leer je hoe je een relais bedient als een echte pro. Hiermee geef je de MicroView krachtige mogelijkheden!
+
+code_to_note: |
+
+  Wanneer we de transistor aandoen, zal deze de spoel van de relais voeden. Het magnetische veld dat hierdoor ontstaat zorgt ervoor dat de relais schakelt. De COM pin van de relais maakt nu contact met de NO (Normaal Open) pin. In deze oefening hebben we een LED op de pin aangesloten. Deze zal dus daardoor aangaan. 
+
+      digitalWrite(relayPin, HIGH);
+
+  De relais heeft nog een contactpunt, namelijk de NC (Normally Closed/Normaal gesloten). Deze NC pin is verbonden met de COM pin als de relais uit staat. Je kunt dus beide pinnen gebruiken, afhankelijk of hetgeen je aansluit normaal aan of normaal uit moet staan. Je kunt ook beide pinnen gebruiken om de voeding te schakelen tussen twee apparaten, zoals de waarschuwingsverlichting bij een spoorwegovergang.
+
+      digitalWrite(relayPin, LOW);
+  
+what_you_should_see: |
+  Je kunt de relais horen schakelen terwijl de twee LEDjes om en om knipperen met een 1 seconde interval. Als je dit niet waarneemt check dan de aansluitingen op het board en natuurlijk ook of je het programmaatje hebt geladen in de MicroView.
+
+toubleshooting: |
+  **LEDs gaan niet aan**
+
+  Check of je ze correct hebt aangesloten. De lange poot (en platte kant van het plastic randje) is de positieve kant. 
+  
+  **Geen geluid**
+
+  De transistor en/of spoel werken niet. Controlleer of deze juist is geplaatst. 
+
+  **Werkt een klein beetje**
+  
+  Normaal wordt deze relais via solderen op een circuit aangesloten. En niet via een breadboard. Je zult mogelijk de verbinding moet aandrukken om zeker te zijn dat alles goed blijft werken. Let op dat je bij het aansluiten de temperatuursensor niet verward voor een transistor. Ze zien er namelijk bijna hetzelfde uit.
+
+---

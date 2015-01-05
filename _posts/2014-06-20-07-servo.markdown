@@ -1,0 +1,53 @@
+---
+layout: post
+title:  "07 Servo"
+date:   2014-06-20 20:16:18
+categories: tutorial
+hype: 07-servo
+codebender: 36527
+parts:
+    - sku:	    ROB-09065
+      points:	N/A
+    - sku:      BLACK-JUMPER
+      points: B14 → Servo
+    - sku:      RED-JUMPER
+      points: I8 → Servo
+    - sku:      WHITE-JUMPER
+      points: I9 → Servo
+intro: |
+  Servos (of ook wel servomotoren) zijn ideale onderdelen in een electrisch circuit, omdat ze iets heel erg goed doen wat motors niet kunnen. Namelijk het precies bewegen naar een van te voren opgegeven plek. Dit doe je de plusbreedte van de uitgaande spanning naar de servo te variëren. Als voorbeeld: een puls van 1,5 milliseconde laat de servo 90 graden draaien. In deze oefening leer je hoe je de pulsbreedtemodulatie (PWM) gebruikt voor het aansturen en draaien van een servo.  
+
+code_to_note: |
+
+  `#include` is een speciaal "preprocessor" commando waarmee je een bibliotheek (engels: a library) of ander bestand toevoegt in je sketch project. Je kunt dit commando zelf intypen of kies een geinstalleerde bibliotheek (engels: installed library) uit het "sketch / import library" menu.
+
+      #include <Servo.h>
+
+  Deze servo bibliotheek voegt nieuwe commandos die je de servo laten aansturen. Om de Arduino Microview voor te bereiden hierop, moet je eerste een servo object voor iedere servo aanmaken. In het voorbeeld hieronder is dit object ook servo genoemd en vervolgens verbonden aan een digitale pin (output pin 6)
+
+      Servo servo;
+      servo.attach(6);
+
+  Deze servo draait niet helemaal rond, maar kan wel naar elke willekeurig positie draaien. We gebruiken het write() commando uit de servo bibliotheek om deze een bepaalde hoeveelheid graden (van 0 tot en met 160) te laten draaien. Bouw een vertraging `delay()` in om de servo tijd te geven om de beweging volledig uit te voeren. 
+
+      servo.write(160);
+
+
+what_you_should_see: |
+  De servo behoort te bewegen naar verschillende posities met verschillende snelheden. Check alle onderdelen op het board, mocht de servomotor het niet doen. En controlleer ook of je het programma succesvol in de MicroView hebt geladen. 
+  
+toubleshooting: |
+  **Servo beweegt niet**
+
+  Ook al komt de servo met gekleurde draadjes, het blijft heel eenvoudig om hem verkeerd aan te sluiten. Controlleer dus nog even of de juiste kleur op de juiste plek zit. 
+  
+  **Hij doet het nog steeds niet**
+
+  Een simpele fout: doe de stekker erin :)
+  Misschien ben je vergeten het rode snoertje aan de 5 volt te sluiten en de bruine op aarde.
+
+  **Beweegt maar stotterig**
+  
+  Als de servo wel begint met bewegen, maar ook met schokken en er is een knipperende lichtje op de MicroView, dan is de voeding niet krachtig genoeg. Probeer het dan met een USB aansluiting die meer stroom kan leveren. 
+
+---

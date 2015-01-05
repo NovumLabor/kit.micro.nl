@@ -1,0 +1,87 @@
+---
+layout: post
+title:  "03 RGB LED"
+date:   2014-06-20 20:16:18
+categories: tutorial
+hype: 03-rgb-led
+codebender: 36523
+parts:
+
+    - sku:	    COM-00105
+      points:	J21 [Red], J22 [Cathode], J23 [Green], J24  [Blue]
+
+    - sku:      COM-08377
+      points: I17 → I21
+
+    - sku:      COM-08377
+      points: H18 → H23
+
+    - sku:      COM-08377
+      points: G19 → G24
+
+    - sku:      RED-JUMPER
+      points: I9 → J17
+
+    - sku:      GREEN-JUMPER
+      points: I10 → J18
+    
+    - sku:      BLUE-JUMPER
+      points: I11 → J19
+
+    - sku:      BLACK-JUMPER
+      points: A14 → X16
+
+    - sku:      BLACK-JUMPER
+      points: F22 → X24
+
+
+intro: |
+  Wat is nog leuker dan een knipperende LED? Van kleur veranderende LEDs! RGB, ofwel rood-groen-blauw, LEDs hebben drie verschillende kleur-uitstralende diode (Light-Emitting Diodes) die kunnen worden gecombineerd om alle verschillende kleuren weer te geven. In this circuit, you’ll learn how to use an RGB LED to create unique color combinations. Depending on how bright each diode is, nearly any color is possible!
+
+
+code_to_note: |
+
+  Een `for()` loop wordt gebruikt om een bepaald aantal keren door een stukje programma te lopen. De code wordt herhaald totdat aan de voorwaarde, vermeld tussen de haakjes `{}`, is voldaan. 
+  In deze oefening wordt de `for` loop gebruikt om de helderheid van de LEDs te veranderen. De variabele "i" start bij 0, stopt bij 255, en loopt op via de variabele `fadeStep`.
+
+      for (i=0;i<=255;i+=fadeStep) 
+      {}
+
+  De MicroView is supersnel! Hij kan iedere seconde duizenden regels aan code doorlopen. We gebruiken vertragingen: `delay()` (in millisecondes - in 1 seconde zitten 1000 millisecondes) om hem langzamer te laten lopen, zodat we beter kunnen zien wat hij aan het doen is. 
+  
+      delay(dly);
+
+
+what_you_should_see: |
+  De RGB LED verandert constant van kleur. De RGB waarden worden hierbij op het MicroView scherm weergegeven.
+
+toubleshooting: |
+  **LED blijft uit of geeft de verkeerde kleur**
+
+  De vier pootjes van de LED zitten dicht bijelkaar. Je kunt daardoor snel een foutje maken. Controlleer dus altijd even of je de pootjes in de juiste positie hebt geplaatst. 
+    
+  **Rood waarnemen**
+
+  De rode diode in de RGB LED is mogelijk een stukje helderder dan de andere twee. Je kunt bijvoorbeeld een grotere weerstand gebruiken of de code aanpassen om dit verschil te compenseren. 
+        
+      analogWrite(RED,i);
+
+  to
+      
+      analogWrite(RED,i/3);
+
+---
+
+## De waarheid achter de analogWrite():
+
+We hebben al laten zien dat de Arduino MicroView analoge waarden kan uitlezen (spanningen tussen 0 en 5 volt) met behulp van de analogRead() functie. Is er ook een mogelijkheid om analoge uitgang aan te sturen?
+
+Het antwoord is nee... en ja. De MicroView heeft niet een echte analoge uitgang. Maar, omdat de MicroView zo snel is, kan hij wel via de optie PWM ("Pulse-Width Modulation") doen alsof. 
+
+De pinnen 3, 5, en 6 in de Arduino code, zijn gekoppeld aan de MicroView's fysieke pinnen 12, 13 en 14. Ieder van deze pin heeft de mogelijkheid om als PWM/analogWrite te gebruiken.
+
+PWM varieert de tijd dat de pin hoog staat en laag staat. Als een knipperende pin meestal hoog staat en je hier een LED op aansluit, dan zal deze LED fel branden. Is de pin meestal laag, dan is de LED gedimd. Omdat de pin sneller knippert dan je oog kan zien creeert de MicroView de illusie van een echte analoge uitgang. 
+
+<img src="/assets/analog_write.svg" style="width:100%" />
+
+
